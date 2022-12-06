@@ -1,5 +1,5 @@
-# Advent Of Code
-2021, 2022
+# Advent Of Code [2021, 2022]
+
 
 Each folder contains my progress in that year's Advent of Code series of challenges. 
 

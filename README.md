@@ -10,3 +10,8 @@ Each folder contains my progress in that year's Advent of Code series of challen
 ### Day 4 ✅ ✅ 
 ### Day 5
 ### Day 6 ✅ ✅ 
+
+
+## 2021
+### Day 1 ✅ ✅ 
+### Day 2 ✅ ✅ 

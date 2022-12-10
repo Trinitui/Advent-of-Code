@@ -20,6 +20,7 @@ example_grid = [
     ["P"]
 ]   
 
+
 '''
 FINAL ORIENTATION:
 
@@ -31,6 +32,7 @@ FINAL ORIENTATION:
 
 '''
 
+'''
 # Challenge now is a NON-LIFO SOLUTION
 # Main loop!
 for inst in example_instructions:
@@ -48,25 +50,24 @@ for inst in example_instructions:
 
     #Do NON LIFO
     # Move Whole chunk of list, not just popping one at a time
-
-    chunk_to_move = example_grid[source][:num_to_move]
+    chunk_to_move = example_grid[source][-num_to_move:]
     print(chunk_to_move)
-    example_grid[destination].append(example_grid[source][:num_to_move])
+    example_grid[destination].append(example_grid[source][-num_to_move:])
     example_grid[destination] = [item for sublist in example_grid[destination] for item in sublist]
+    del example_grid[source][-num_to_move:]
     #example_grid[source][:num_to_move]
     print("Moving...",example_grid)
     print("Move Complete")
-    break
 
 print(example_grid)
 ans = []
 for row in example_grid:
     ans.append(row[-1])
 print("".join(ans))
+# This appears to work! 
 
 
-
-
+'''
 
 
 
@@ -85,7 +86,7 @@ print("".join(ans))
 
  '''
 
-'''
+
 f = open("2022/Day 5/day5.txt", "r")
 input_list = f.readlines()
 f.close()
@@ -116,10 +117,20 @@ for inst in input_list:
     source = int(inst[1]) - 1
     destination = int(inst[2]) - 1
 
-    #DoLIFO
-    for popper in range(0,num_to_move):
-        grid[destination].append(grid[source].pop())
-        print("Moving...",grid)
+    # Initialize variables from instructions
+    num_to_move = int(inst[0])
+    source = int(inst[1]) - 1
+    destination = int(inst[2]) - 1
+
+    #Do NON LIFO
+    # Move Whole chunk of list, not just popping one at a time
+    chunk_to_move = grid[source][-num_to_move:]
+    print(chunk_to_move)
+    grid[destination].append(grid[source][-num_to_move:])
+    grid[destination] = [item for sublist in grid[destination] for item in sublist]
+    del grid[source][-num_to_move:]
+    #example_grid[source][:num_to_move]
+    print("Moving...",grid)
     print("Move Complete")
 
 print(grid)
@@ -128,4 +139,4 @@ for row in grid:
     ans.append(row[-1])
 print("".join(ans))
 
-'''
+# WORKED! 

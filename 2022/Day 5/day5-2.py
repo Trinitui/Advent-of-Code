@@ -6,6 +6,7 @@
 [Z] [M] [P]
  1   2   3 
 '''
+
 example_instructions = [
 'move 1 from 2 to 1\n',
 'move 3 from 1 to 3\n',
@@ -13,28 +14,24 @@ example_instructions = [
 'move 1 from 1 to 2\n'
 ]
 
-example_col_1 = ["N","Z"]
-example_col_2 = ["D","C","M"]
-example_col_3 = ["P"]
-
 example_grid = [
     ["Z","N"],
     ["M","C","D"],
     ["P"]
 ]   
 
-''' 
+'''
 FINAL ORIENTATION:
 
-        [Z]
-        [N]
         [D]
-[C] [M] [P]
+        [N]
+        [Z]
+[M] [C] [P]
  1   2   3
 
- '''
-
 '''
+
+# Challenge now is a NON-LIFO SOLUTION
 # Main loop!
 for inst in example_instructions:
     
@@ -49,12 +46,17 @@ for inst in example_instructions:
     source = int(inst[1]) - 1
     destination = int(inst[2]) - 1
 
-    #DoLIFO
-    for popper in range(0,num_to_move):
-        #print(popper,num_to_move,destination,source)
-        example_grid[destination].append(example_grid[source].pop())
-        print("Moving...",example_grid)
+    #Do NON LIFO
+    # Move Whole chunk of list, not just popping one at a time
+
+    chunk_to_move = example_grid[source][:num_to_move]
+    print(chunk_to_move)
+    example_grid[destination].append(example_grid[source][:num_to_move])
+    example_grid[destination] = [item for sublist in example_grid[destination] for item in sublist]
+    #example_grid[source][:num_to_move]
+    print("Moving...",example_grid)
     print("Move Complete")
+    break
 
 print(example_grid)
 ans = []
@@ -62,7 +64,12 @@ for row in example_grid:
     ans.append(row[-1])
 print("".join(ans))
 
-'''
+
+
+
+
+
+
 # ----------------------------- ACTUAL WORK FOR DAY 1-1 BELOW
 
 '''
@@ -78,6 +85,7 @@ print("".join(ans))
 
  '''
 
+'''
 f = open("2022/Day 5/day5.txt", "r")
 input_list = f.readlines()
 f.close()
@@ -119,3 +127,5 @@ ans = []
 for row in grid:
     ans.append(row[-1])
 print("".join(ans))
+
+'''
